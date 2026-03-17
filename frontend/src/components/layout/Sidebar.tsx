@@ -54,17 +54,17 @@ export default function Sidebar() {
             </div>
             <div>
               <h1 className="text-[15px] font-semibold text-white tracking-tight">Catalogador</h1>
-              <p className="text-[11px] text-gray-500 -mt-0.5">de Projetos</p>
+              <p className="text-[11px] -mt-0.5" style={{ color: '#9ca3af' }}>de Projetos</p>
             </div>
           </div>
-          <button onClick={() => setOpen(false)} className="lg:hidden p-1.5 rounded-lg text-gray-500 hover:text-gray-300 hover:bg-white/5">
+          <button onClick={() => setOpen(false)} className="lg:hidden p-1.5 rounded-lg hover:bg-white/5" style={{ color: '#9ca3af' }}>
             <X size={16} />
           </button>
         </div>
 
         {/* Nav */}
         <nav className="flex-1 px-3 py-1 overflow-auto">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-600 px-3 mb-2">Menu</p>
+          <p className="text-[10px] font-semibold uppercase tracking-wider px-3 mb-2" style={{ color: '#6b7280' }}>Menu</p>
           {links.map(({ to, icon: Icon, label }) => (
             <NavLink
               key={to}
@@ -72,15 +72,14 @@ export default function Sidebar() {
               end={to === '/'}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2 rounded-xl text-[13px] mb-0.5 transition-all duration-200 ${
-                  isActive
-                    ? 'text-white font-medium'
-                    : 'text-gray-500 hover:text-gray-300 hover:bg-white/[0.04]'
+                  isActive ? 'font-medium' : 'hover:bg-white/[0.06]'
                 }`
               }
               style={({ isActive }) => isActive ? {
-                background: 'linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.08))',
-                boxShadow: 'inset 0 0 0 1px rgba(99,102,241,0.15)',
-              } : {}}
+                color: '#ffffff',
+                background: 'linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.1))',
+                boxShadow: 'inset 0 0 0 1px rgba(99,102,241,0.2)',
+              } : { color: '#9ca3af' }}
             >
               <Icon size={16} strokeWidth={1.8} />
               {label}
@@ -90,7 +89,7 @@ export default function Sidebar() {
 
         {/* Footer */}
         <div className="p-4 mx-3 mb-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)' }}>
-          <p className="text-[11px] text-gray-600">136 projetos catalogados</p>
+          <p className="text-[11px]" style={{ color: '#9ca3af' }}>136 projetos catalogados</p>
           <div className="flex gap-1 mt-1.5">
             <div className="h-1 flex-1 rounded-full bg-primary/30" />
             <div className="h-1 flex-1 rounded-full bg-success/30" />
