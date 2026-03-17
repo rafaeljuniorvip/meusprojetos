@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '../api/client'
 import Badge from '../components/ui/Badge'
 import Card from '../components/ui/Card'
 import Spinner from '../components/ui/Spinner'
 import type { PaginatedResponse } from '../types'
-import { Video, Sparkles, Copy, Trash2, Clock, Hash, Lightbulb, Rocket, Film, ArrowRight } from 'lucide-react'
+import { Video, Sparkles, Copy, Trash2, Clock, Hash, Lightbulb, Rocket, Film } from 'lucide-react'
 
 interface Script {
   id: number; script_type: string; title: string; hook_text: string
@@ -283,7 +283,7 @@ function IdeasSection({ models, currentModel }: any) {
   )
 }
 
-function ScriptsListSection({ types, projects, onView, queryClient }: any) {
+function ScriptsListSection({ types, projects, onView }: any) {
   const [filterProject, setFilterProject] = useState<number | null>(null)
   const [filterType, setFilterType] = useState('')
   const [page, setPage] = useState(1)

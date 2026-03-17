@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '../api/client'
-import Badge from '../components/ui/Badge'
 import Card from '../components/ui/Card'
 import Spinner from '../components/ui/Spinner'
-import ProviderLogo from '../components/ui/ProviderLogo'
 import type { LlmModel } from '../types'
 import { CalendarDays, ChevronLeft, ChevronRight, Wand2, Sparkles, Brain } from 'lucide-react'
 

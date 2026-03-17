@@ -65,7 +65,7 @@ export default function Sidebar() {
         {/* Nav */}
         <nav className="flex-1 px-3 py-1 overflow-auto">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-600 px-3 mb-2">Menu</p>
-          {links.map(({ to, icon: Icon, label }, i) => (
+          {links.map(({ to, icon: Icon, label }) => (
             <NavLink
               key={to}
               to={to}
@@ -82,7 +82,7 @@ export default function Sidebar() {
                 boxShadow: 'inset 0 0 0 1px rgba(99,102,241,0.15)',
               } : {}}
             >
-              <Icon size={16} strokeWidth={isActive => isActive ? 2.5 : 1.8} />
+              <Icon size={16} strokeWidth={1.8} />
               {label}
             </NavLink>
           ))}

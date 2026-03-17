@@ -5,7 +5,7 @@ import Card from '../components/ui/Card'
 import Badge from '../components/ui/Badge'
 import Spinner from '../components/ui/Spinner'
 import type { StatsOverview } from '../types'
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
 import {
   FolderKanban, GitBranch, Container, Rocket, TrendingUp, Cpu, ScanSearch,
   Video, Sparkles, ArrowRight, CheckCircle, XCircle, Clock, Zap

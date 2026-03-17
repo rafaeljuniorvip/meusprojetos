@@ -4,7 +4,7 @@ import api from '../api/client'
 import Badge from '../components/ui/Badge'
 import Spinner from '../components/ui/Spinner'
 import type { Project } from '../types'
-import { TrendingUp, DollarSign, Rocket, Target } from 'lucide-react'
+import { TrendingUp, DollarSign, Rocket, Target, Star } from 'lucide-react'
 
 interface TopProject extends Project {
   description_long: string | null
