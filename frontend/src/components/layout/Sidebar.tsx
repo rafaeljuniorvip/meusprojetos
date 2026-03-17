@@ -1,6 +1,7 @@
 import { NavLink, useLocation } from 'react-router'
-import { LayoutDashboard, FolderKanban, Bot, Menu, X, TrendingUp, Video, CalendarDays, ScrollText, Sparkles } from 'lucide-react'
+import { LayoutDashboard, FolderKanban, Bot, Menu, X, TrendingUp, Video, CalendarDays, ScrollText, Sparkles, LogOut, Shield } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import { useAuth } from '../../hooks/useAuth'
 
 const links = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
@@ -10,11 +11,13 @@ const links = [
   { to: '/potencial', icon: TrendingUp, label: 'Potencial' },
   { to: '/modelos', icon: Bot, label: 'Modelos LLM' },
   { to: '/logs', icon: ScrollText, label: 'Atividade' },
+  { to: '/admin', icon: Shield, label: 'Admin' },
 ]
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false)
   const location = useLocation()
+  const { data: auth } = useAuth()
 
   useEffect(() => { setOpen(false) }, [location.pathname])
 
@@ -87,14 +90,30 @@ export default function Sidebar() {
           ))}
         </nav>
 
-        {/* Footer */}
-        <div className="p-4 mx-3 mb-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)' }}>
-          <p className="text-[11px]" style={{ color: '#9ca3af' }}>136 projetos catalogados</p>
-          <div className="flex gap-1 mt-1.5">
-            <div className="h-1 flex-1 rounded-full bg-primary/30" />
-            <div className="h-1 flex-1 rounded-full bg-success/30" />
-            <div className="h-1 flex-1 rounded-full bg-warning/30" />
-          </div>
+        {/* User + Logout */}
+        <div className="px-3 mb-2">
+          {auth?.user && (
+            <div className="p-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <div className="flex items-center gap-2.5 mb-2">
+                {auth.user.picture ? (
+                  <img src={auth.user.picture} alt="" className="w-7 h-7 rounded-lg" />
+                ) : (
+                  <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center text-[11px] font-bold text-white">
+                    {auth.user.name?.[0] || '?'}
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <p className="text-[12px] font-medium text-white truncate">{auth.user.name}</p>
+                  <p className="text-[10px] truncate" style={{ color: '#6b7280' }}>{auth.user.email}</p>
+                </div>
+              </div>
+              <a href="/auth/logout"
+                className="flex items-center justify-center gap-1.5 w-full py-1.5 rounded-lg text-[11px] font-medium transition-colors hover:bg-white/[0.06]"
+                style={{ color: '#9ca3af' }}>
+                <LogOut size={12} /> Sair
+              </a>
+            </div>
+          )}
         </div>
       </aside>
     </>

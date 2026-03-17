@@ -9,7 +9,7 @@ from fastapi.responses import FileResponse, RedirectResponse, JSONResponse
 from starlette.middleware.sessions import SessionMiddleware
 import httpx
 
-from api.routers import projects, stats, timeline, llm_models, actions, scripts, calendar, settings
+from api.routers import projects, stats, timeline, llm_models, actions, scripts, calendar, settings, admin
 
 app = FastAPI(title="Project Cataloger API", version="1.0.0")
 
@@ -92,10 +92,22 @@ async def auth_callback(request: Request, code: str = ""):
         userinfo = userinfo_resp.json()
 
     email = userinfo.get("email", "")
-    if ALLOWED_EMAILS:
-        allowed = [e.strip() for e in ALLOWED_EMAILS.split(",")]
-        if email not in allowed:
-            return JSONResponse({"error": f"Email {email} nao autorizado"}, status_code=403)
+
+    # Check allowed emails from DB first, then env var as fallback
+    allowed_list = []
+    try:
+        from config.database import execute_one as db_get
+        row = db_get("SELECT value FROM app_settings WHERE key = 'allowed_emails'")
+        if row and row["value"]:
+            allowed_list = [e.strip() for e in row["value"].split(",") if e.strip()]
+    except Exception:
+        pass
+
+    if not allowed_list and ALLOWED_EMAILS:
+        allowed_list = [e.strip() for e in ALLOWED_EMAILS.split(",") if e.strip()]
+
+    if allowed_list and email not in allowed_list:
+        return JSONResponse({"error": f"Email {email} nao autorizado"}, status_code=403)
 
     request.session["user"] = {
         "email": email,
@@ -130,6 +142,7 @@ app.include_router(actions.router, prefix="/api/actions", tags=["actions"])
 app.include_router(scripts.router, prefix="/api/scripts", tags=["scripts"])
 app.include_router(calendar.router, prefix="/api/calendar", tags=["calendar"])
 app.include_router(settings.router, prefix="/api/settings", tags=["settings"])
+app.include_router(admin.router, prefix="/api/admin", tags=["admin"])
 
 
 @app.get("/api/health")

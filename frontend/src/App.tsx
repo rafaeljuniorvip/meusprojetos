@@ -33,6 +33,7 @@ const ProjectDetail = lazy(() => import('./pages/ProjectDetail'))
 const TopProjects = lazy(() => import('./pages/TopProjects'))
 const LlmModels = lazy(() => import('./pages/LlmModels'))
 const ActivityLogs = lazy(() => import('./pages/ActivityLogs'))
+const Admin = lazy(() => import('./pages/Admin'))
 
 function AuthenticatedApp() {
   return (
@@ -51,6 +52,7 @@ function AuthenticatedApp() {
                 <Route path="/potencial" element={<TopProjects />} />
                 <Route path="/modelos" element={<LlmModels />} />
                 <Route path="/logs" element={<ActivityLogs />} />
+                <Route path="/admin" element={<Admin />} />
               </Routes>
             </Suspense>
           </ErrorBoundary>
