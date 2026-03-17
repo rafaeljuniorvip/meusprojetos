@@ -1,0 +1,61 @@
+Você é um analista de projetos de software. Analise o projeto abaixo e retorne um JSON estruturado.
+
+## Projeto: {folder_name}
+
+### Estrutura de arquivos:
+```
+{file_tree}
+```
+
+### Informações Git:
+- Commits: {git_commits}
+- Último commit: {git_last_date} - "{git_last_msg}"
+- Remote: {git_remote}
+- Branch: {git_branch}
+
+### Linguagens detectadas:
+{languages}
+
+### Arquivos do projeto:
+{files_content}
+
+---
+
+Analise o projeto e retorne APENAS um JSON válido com esta estrutura exata:
+
+{{
+  "project_name": "Nome legível do projeto (ex: 'Galinha Gorda - Delivery App')",
+  "description_short": "Descrição em 1-2 frases do que o projeto faz",
+  "description_long": "Descrição detalhada com funcionalidades, arquitetura e propósito (3-5 parágrafos)",
+  "tech_stack": ["lista", "de", "tecnologias"],
+  "databases": ["PostgreSQL", "SQLite", "Redis", "MongoDB", "etc - liste TODOS os bancos de dados usados"],
+  "frameworks": ["Express", "React", "Flask", "Next.js", "etc - liste TODOS os frameworks usados"],
+  "apis_integrations": ["OpenRouter", "WhatsApp/WAHA", "Google OAuth", "Stripe", "etc - liste TODAS as APIs e integrações externas"],
+  "infrastructure": ["Docker", "Docker Swarm", "Traefik", "Nginx", "GitHub Actions", "etc - liste toda infra usada"],
+  "category": "Uma de: SaaS, Internal Tool, IoT, Landing Page, Mobile App, API/Backend, Automation, Game, E-commerce, Finance, Health, Communication, Education, DevOps, Utility, Other",
+  "subcategory": "Subcategoria mais específica",
+  "target_audience": "Quem usaria/compraria este software",
+  "monetization_potential": "high/medium/low/none",
+  "monetization_ideas": ["ideia 1", "ideia 2", "ideia 3"],
+  "dev_time_estimate": "Tempo estimado de desenvolvimento (ex: '2-3 meses')",
+  "dev_completion_pct": 75,
+  "features_list": ["feature 1", "feature 2", "feature 3"],
+  "marketing_hooks": [
+    "Gancho para vídeo/reels que geraria engajamento sobre este projeto",
+    "Outro gancho atrativo para redes sociais",
+    "Mais um gancho que mostraria o valor do projeto"
+  ],
+  "saas_readiness_score": 7,
+  "saas_readiness_notes": "O que falta para ser um SaaS completo",
+  "deployment_status": "deployed/local-only/abandoned/in-progress",
+  "related_projects": ["nomes de pastas que parecem relacionados"],
+  "tags": ["tag1", "tag2", "tag3"]
+}}
+
+IMPORTANTE:
+- Os marketing_hooks devem ser ganchos criativos para Instagram Reels, pensando em atrair público de tecnologia e empreendedores
+- Considere que o desenvolvedor quer se posicionar como referência em tecnologia e I.A. na cidade
+- Avalie honestamente o potencial de monetização
+- Os hooks devem ser em português brasileiro, informais e chamativos
+- Se o projeto parece abandonado ou incompleto, indique isso claramente
+- Liste TODOS os bancos de dados, frameworks, APIs e infraestrutura que você identificar no código

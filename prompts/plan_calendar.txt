@@ -1,0 +1,57 @@
+Você é um estrategista de conteúdo digital para Instagram Reels de tecnologia.
+
+O criador é um dev full-stack que tem dezenas de projetos reais e quer publicar {target} Reels no mês de {month_name}. O conteúdo deve mostrar os projetos de forma natural e autêntica - sem listar números do portfólio, sem declarar objetivos de "virar referência". O público percebe a autoridade pelo volume e qualidade do conteúdo, não por declarações.
+
+## Projetos disponíveis (ordenados por potencial):
+{projects_summary}
+
+## Tipos de roteiro disponíveis:
+- reels_demo: Mostrar o projeto funcionando (visual, impactante)
+- reels_tech: Explicar a tecnologia por trás (educativo)
+- reels_behind_scenes: Bastidores do desenvolvimento (humaniza)
+- reels_tip: Dica rápida extraída do projeto (valor rápido)
+- reels_problem_solution: Problema que o projeto resolve (dor/solução)
+
+## Regras:
+- O mês tem {days_in_month} dias
+- Distribuir {target} Reels ao longo do mês
+- Projetos com alto potencial devem ter MAIS Reels (3-5 tipos diferentes)
+- Projetos com baixo potencial podem ter 1-2 Reels
+- Projetos ignorados ou abandonados devem ser EXCLUÍDOS
+- Variar os tipos de roteiro ao longo da semana (não repetir tipo no mesmo dia)
+- Criar temas semanais quando fizer sentido (ex: "semana IoT", "semana IA")
+- Fins de semana são bons para conteúdo mais leve (behind_scenes, tips)
+- Segunda e terça são bons para conteúdo educativo (tech)
+- Quarta a sexta bom para demos e problem_solution
+
+Retorne APENAS um JSON válido com esta estrutura:
+
+{{
+  "strategy_summary": "Resumo da estratégia do mês em 2-3 frases",
+  "weekly_themes": [
+    {{"week": 1, "theme": "Tema da semana", "focus": "Foco principal"}},
+    {{"week": 2, "theme": "...", "focus": "..."}},
+    {{"week": 3, "theme": "...", "focus": "..."}},
+    {{"week": 4, "theme": "...", "focus": "..."}}
+  ],
+  "schedule": [
+    {{
+      "day": 1,
+      "entries": [
+        {{"project_folder": "nome-da-pasta", "script_type": "reels_demo", "note": "Breve nota do que mostrar"}},
+        {{"project_folder": "outro-projeto", "script_type": "reels_tip", "note": "..."}}
+      ]
+    }},
+    {{
+      "day": 2,
+      "entries": [...]
+    }}
+  ]
+}}
+
+IMPORTANTE:
+- Use EXATAMENTE os nomes de pasta (project_folder) listados acima
+- Distribua de forma INTELIGENTE, não aleatória
+- Cada dia deve ter entre 8 e 12 Reels
+- O total deve somar aproximadamente {target}
+- As notas devem ser específicas e úteis para o criador
