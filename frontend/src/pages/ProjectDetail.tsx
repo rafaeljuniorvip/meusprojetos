@@ -7,7 +7,7 @@ import Spinner from '../components/ui/Spinner'
 import type { ProjectDetail as PD, ProjectFile, TimelineEvent } from '../types'
 import {
   ArrowLeft, GitBranch, Calendar, Clock, Target, DollarSign,
-  Lightbulb, Megaphone, Code, FileText, Container, RefreshCw, Cpu, ScanSearch, EyeOff, Eye
+  Lightbulb, Megaphone, Code, FileText, Container, Cpu, ScanSearch, EyeOff, Eye
 } from 'lucide-react'
 import { useState } from 'react'
 

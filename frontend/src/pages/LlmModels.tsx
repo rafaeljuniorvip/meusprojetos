@@ -4,7 +4,7 @@ import api from '../api/client'
 import Badge from '../components/ui/Badge'
 import Spinner from '../components/ui/Spinner'
 import type { LlmModel, PaginatedResponse } from '../types'
-import { Star, RefreshCw, Search, ChevronDown, ChevronUp, Check, Zap, Scale, Crown } from 'lucide-react'
+import { Star, RefreshCw, Search, Check, Zap, Scale, Crown } from 'lucide-react'
 import ProviderLogo from '../components/ui/ProviderLogo'
 
 const TIERS = [

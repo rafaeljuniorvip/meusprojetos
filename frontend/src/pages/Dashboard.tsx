@@ -8,8 +8,7 @@ import type { StatsOverview } from '../types'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area } from 'recharts'
 import {
   FolderKanban, GitBranch, Container, Rocket, TrendingUp, Cpu, ScanSearch,
-  Video, CalendarDays, Sparkles, ArrowRight, CheckCircle, XCircle, Clock,
-  Code, Zap, Target, DollarSign
+  Video, Sparkles, ArrowRight, CheckCircle, XCircle, Clock, Zap
 } from 'lucide-react'
 
 const COLORS = ['#6366f1', '#10b981', '#f59e0b', '#8b5cf6', '#ef4444', '#06b6d4', '#ec4899', '#14b8a6', '#f97316', '#3b82f6']
@@ -102,7 +101,7 @@ export default function Dashboard() {
 
       {/* Stat cards */}
       <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-3 mb-6">
-        {statCards.map(({ label, value, icon: Icon, gradient }, i) => (
+        {statCards.map(({ label, value, icon: Icon, gradient }) => (
           <div key={label}
             className="group bg-surface rounded-2xl border border-border/60 p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-0.5">
             <div className={`w-8 h-8 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center mb-3 shadow-sm`}>
@@ -161,7 +160,7 @@ export default function Dashboard() {
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie data={categories} dataKey="count" nameKey="category" cx="50%" cy="50%"
-                      outerRadius="75%" innerRadius="45%" label={({ count }) => `${count}`}
+                      outerRadius="75%" innerRadius="45%" label={({ value }) => `${value}`}
                       labelLine={false} fontSize={10} strokeWidth={2} stroke="#f8f9fc">
                       {categories.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
                     </Pie>
