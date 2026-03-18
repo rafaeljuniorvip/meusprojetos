@@ -27,6 +27,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Trust proxy headers (Traefik) so request.url reflects https
+from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
+app.add_middleware(ProxyHeadersMiddleware, trusted_hosts="*")
+
 
 # --- Auth helpers ---
 def get_current_user(request: Request):
@@ -51,6 +55,9 @@ async def auth_login(request: Request):
     if not GOOGLE_CLIENT_ID:
         return RedirectResponse("/")
     redirect_uri = str(request.url_for("auth_callback"))
+    # Behind Traefik/reverse proxy, force HTTPS
+    if redirect_uri.startswith("http://") and request.headers.get("x-forwarded-proto") == "https":
+        redirect_uri = redirect_uri.replace("http://", "https://", 1)
     params = {
         "client_id": GOOGLE_CLIENT_ID,
         "redirect_uri": redirect_uri,
@@ -69,6 +76,8 @@ async def auth_callback(request: Request, code: str = ""):
         return RedirectResponse("/")
 
     redirect_uri = str(request.url_for("auth_callback"))
+    if redirect_uri.startswith("http://") and request.headers.get("x-forwarded-proto") == "https":
+        redirect_uri = redirect_uri.replace("http://", "https://", 1)
 
     async with httpx.AsyncClient() as client:
         token_resp = await client.post("https://oauth2.googleapis.com/token", data={
