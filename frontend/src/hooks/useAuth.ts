@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import api from '../api/client'
+import axios from 'axios'
 
 interface AuthState {
   authenticated: boolean
@@ -10,7 +10,7 @@ interface AuthState {
 export function useAuth() {
   return useQuery<AuthState>({
     queryKey: ['auth'],
-    queryFn: () => api.get('/auth/me').then(r => r.data),
+    queryFn: () => axios.get('/auth/me').then(r => r.data),
     staleTime: 60000,
     retry: false,
   })
